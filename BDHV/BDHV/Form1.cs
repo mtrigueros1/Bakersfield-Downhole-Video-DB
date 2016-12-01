@@ -65,7 +65,7 @@ namespace BDHV
         private void button1_Click_1(object sender, EventArgs e)
         {
             string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
-            string s = dd1_month.SelectedIndex + "-" + dd1_day.SelectedIndex + "-" + year1.Text;
+            string s = dd1_month.SelectedIndex + "-" + dd1_day.SelectedIndex + "-" + dd1_year1.Text;
             Console.WriteLine(s);
             int correct = 0;
             DateTime dt;
@@ -76,11 +76,11 @@ namespace BDHV
             }
             else
             {
-                s = dd1_day.SelectedIndex + "-" + dd1_month.SelectedIndex + "-" + year1.Text;
+                s = dd1_day.SelectedIndex + "-" + dd1_month.SelectedIndex + "-" + dd1_year1.Text;
                 correct += 1;
             }
 
-            string s2 = dd1_month2.SelectedIndex + "-" + dd1_day2.SelectedIndex + "-" + year2.Text;
+            string s2 = dd1_month2.SelectedIndex + "-" + dd1_day2.SelectedIndex + "-" + dd1_year2.Text;
             DateTime dt2;
             if (!DateTime.TryParse(s2, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt2))
             {
@@ -89,13 +89,14 @@ namespace BDHV
             }
             else
             {
-                s2 = dd1_day2.SelectedIndex + "-" + dd1_month2.SelectedIndex + "-" + year2.Text;
+                s2 = dd1_day2.SelectedIndex + "-" + dd1_month2.SelectedIndex + "-" + dd1_year2.Text;
                 correct += 1;
             }
             if (correct == 2)
             {
 
-                string test = null;
+                string sumprofit = null;
+                string sumhours = null;
 
                 try
                 {
@@ -115,13 +116,43 @@ namespace BDHV
                     Console.WriteLine("Connection succesful!");
                     Console.WriteLine(cmd.Parameters["hrsum"].Value);
                     var rt = cmd.Parameters["hrsum"].Value;
-                    test = Convert.ToString(rt);
+                    sumprofit = Convert.ToString(rt);
+                    conn.Close();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error:{0}", ex.Message);
                 }
-                label1.Text = test;
+
+                label5.Text = "$" + sumprofit;
+
+                try
+                {
+                    OracleConnection conn = new OracleConnection(oradb);
+                    var cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "CAM_TotalHours";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                    cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add("start_date", s);
+                    cmd.Parameters.Add("end_date", s2);
+                    cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                    cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Connection succesful!");
+                    Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                    var rt = cmd.Parameters["hrsum"].Value;
+                    sumhours = Convert.ToString(rt);
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
+                label6.Text = sumhours + " hrs";
+
             } else {
                 Console.WriteLine("Test was less than 2!");
             }
