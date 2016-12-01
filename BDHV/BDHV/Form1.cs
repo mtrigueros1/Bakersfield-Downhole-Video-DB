@@ -96,7 +96,7 @@ namespace BDHV
             get_orders.SelectedIndex = 0;
             int selectedemp = get_emps.SelectedIndex;
             string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
-            string cmdtxt = "select OrderID from CAM_WORKSON where EmpSSN = " + EmpID[selectedemp];
+            string cmdtxt = "select unique OrderID from CAM_WORKSON where EmpSSN = " + EmpID[selectedemp];
             using (OracleConnection conn = new OracleConnection(oradb))
             using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
             {
@@ -109,6 +109,92 @@ namespace BDHV
                 }
             }
             
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            int selectedemp = get_emps.SelectedIndex;
+            Console.WriteLine("Order Selected:" + get_orders.SelectedItem);
+            Console.WriteLine("Employee Selected:" + EmpID[selectedemp]);
+            Console.WriteLine("Days To Add:" + hours_to_add.Text);
+            string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+            //----------------------Sums Hours Before update---------------------------//
+            try
+            {
+                OracleConnection conn = new OracleConnection(oradb);
+                var cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "CAM_SpecificHours";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add("empid", Convert.ToString(EmpID[selectedemp]));
+                cmd.Parameters.Add("ordernum", Convert.ToString(get_orders.SelectedItem));
+                cmd.Parameters["empid"].Direction = ParameterDirection.Input;
+                cmd.Parameters["ordernum"].Direction = ParameterDirection.Input;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Connection succesful!");
+                Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                var rt = cmd.Parameters["hrsum"].Value;
+                oldhours.Text = Convert.ToString(rt);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error:{0}", ex.Message);
+            }
+
+            //--------------------Updates End Date-------------------------------------//
+            try
+            {
+                string cmdtxt = null;
+                if (Convert.ToInt32(hours_to_add.Text) < 24)
+            {
+                cmdtxt = "update CAM_WORKSON SET hours = hours + " + Convert.ToString(hours_to_add.Text) + " WHERE EmpSSN = " + EmpID[selectedemp] + " AND OrderID = " + Convert.ToString(get_orders.SelectedItem);
+            } else
+            {
+                cmdtxt = "update CAM_WORKSON SET hours = hours + " + Convert.ToString(hours_to_add.Text) + ", eDate = eDate + " + (Convert.ToInt32(hours_to_add.Text) / 24) + 
+                                " WHERE EmpSSN = " + EmpID[selectedemp] + " AND OrderID = " + Convert.ToString(get_orders.SelectedItem);
+            }
+            
+                using (OracleConnection conn = new OracleConnection(oradb))
+                using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error:{0}", ex.Message);
+            }
+            //----------------------Sums Hours After update---------------------------//
+            try
+            {
+                OracleConnection conn = new OracleConnection(oradb);
+                var cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "CAM_SpecificHours";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add("empid", Convert.ToString(EmpID[selectedemp]));
+                cmd.Parameters.Add("ordernum", Convert.ToString(get_orders.SelectedItem));
+                cmd.Parameters["empid"].Direction = ParameterDirection.Input;
+                cmd.Parameters["ordernum"].Direction = ParameterDirection.Input;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Connection succesful!");
+                Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                var rt = cmd.Parameters["hrsum"].Value;
+                newhours.Text = Convert.ToString(rt);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error:{0}", ex.Message);
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -207,6 +293,6 @@ namespace BDHV
             }
         }
 
-
+       
     }
 }
