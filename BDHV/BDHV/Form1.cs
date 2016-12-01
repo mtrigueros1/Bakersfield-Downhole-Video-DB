@@ -15,6 +15,7 @@ namespace BDHV
 {
     public partial class Form1 : Form
     {
+        int[] EmpID = new int[100];
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +25,10 @@ namespace BDHV
             Add_Month();
             dd1_month.SelectedIndex = 0;
             dd1_month2.SelectedIndex = 0;
+            Fill_employees();
+            get_emps.SelectedIndex = 0;
+            get_orders.Items.Add("Order Number");
+            get_orders.SelectedIndex = 0;
 
         }
 
@@ -57,9 +62,53 @@ namespace BDHV
                 var newOption = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(j + 1);
                 dd1_month.Items.Add(newOption);
                 dd1_month2.Items.Add(newOption);
-
+                
             }
 
+        }
+        private void Fill_employees()
+        {
+            get_emps.Items.Add("Employee Name");
+            string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+            string cmdtxt = "select EmpName, EmpSSN from CAM_EMPLOYEE";
+            using (OracleConnection conn = new OracleConnection(oradb))
+            using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+            {
+                conn.Open();
+                OracleDataReader dr;
+                dr = cmd.ExecuteReader();
+                int i = 1;
+                while (dr.Read())
+                {
+                    get_emps.Items.Add(dr[0].ToString());
+                    EmpID[i] = Convert.ToInt32(dr[1].ToString());
+                    Console.WriteLine(EmpID[i]);
+                    i++;
+                }
+            }
+
+        }
+
+        private void get_emps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            get_orders.Items.Clear();
+            get_orders.Items.Add("Order Number");
+            get_orders.SelectedIndex = 0;
+            int selectedemp = get_emps.SelectedIndex;
+            string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+            string cmdtxt = "select OrderID from CAM_WORKSON where EmpSSN = " + EmpID[selectedemp];
+            using (OracleConnection conn = new OracleConnection(oradb))
+            using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+            {
+                conn.Open();
+                OracleDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    get_orders.Items.Add(dr[0].ToString());
+                }
+            }
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -157,5 +206,7 @@ namespace BDHV
                 Console.WriteLine("Test was less than 2!");
             }
         }
+
+
     }
 }

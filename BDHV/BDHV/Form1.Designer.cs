@@ -32,6 +32,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.dd1_month2 = new System.Windows.Forms.ComboBox();
             this.dd1_day2 = new System.Windows.Forms.ComboBox();
             this.dd1_year2 = new System.Windows.Forms.TextBox();
@@ -41,26 +48,22 @@
             this.get_total_sums = new System.Windows.Forms.Button();
             this.dd1_year1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.get_orders = new System.Windows.Forms.ComboBox();
+            this.get_emps = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(61, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(308, 88);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(582, 88);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
@@ -99,6 +102,75 @@
             this.tabPage1.Size = new System.Drawing.Size(692, 340);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Reports";
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.Gray;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(214, 246);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 21);
+            this.label6.TabIndex = 19;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(41, 246);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(163, 19);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Total Employee Hours:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.DimGray;
+            this.label8.Location = new System.Drawing.Point(42, 242);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 13);
+            this.label8.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.Gray;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(214, 205);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 21);
+            this.label5.TabIndex = 16;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 205);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(191, 19);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Employee Worktime Profit:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 19);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "End Date:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 19);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Start Date:";
             // 
             // dd1_month2
             // 
@@ -155,7 +227,7 @@
             // 
             // get_total_sums
             // 
-            this.get_total_sums.Location = new System.Drawing.Point(274, 154);
+            this.get_total_sums.Location = new System.Drawing.Point(280, 160);
             this.get_total_sums.Name = "get_total_sums";
             this.get_total_sums.Size = new System.Drawing.Size(96, 23);
             this.get_total_sums.TabIndex = 6;
@@ -172,82 +244,34 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.DarkGray;
+            this.tabPage2.Controls.Add(this.get_orders);
+            this.tabPage2.Controls.Add(this.get_emps);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(692, 340);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Text = "Add";
             // 
-            // label2
+            // get_orders
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 19);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Start Date:";
+            this.get_orders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.get_orders.FormattingEnabled = true;
+            this.get_orders.Location = new System.Drawing.Point(172, 57);
+            this.get_orders.Name = "get_orders";
+            this.get_orders.Size = new System.Drawing.Size(121, 21);
+            this.get_orders.TabIndex = 1;
             // 
-            // label3
+            // get_emps
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 19);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "End Date:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 205);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(191, 19);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Employee Worktime Profit:";
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.Gray;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(214, 205);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 21);
-            this.label5.TabIndex = 16;
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.Gray;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(214, 246);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 21);
-            this.label6.TabIndex = 19;
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(41, 246);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(163, 19);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Total Employee Hours:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.DimGray;
-            this.label8.Location = new System.Drawing.Point(42, 242);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 13);
-            this.label8.TabIndex = 17;
+            this.get_emps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.get_emps.FormattingEnabled = true;
+            this.get_emps.Location = new System.Drawing.Point(45, 57);
+            this.get_emps.Name = "get_emps";
+            this.get_emps.Size = new System.Drawing.Size(121, 21);
+            this.get_emps.TabIndex = 0;
+            this.get_emps.SelectedIndexChanged += new System.EventHandler(this.get_emps_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -265,6 +289,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -289,6 +314,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox get_orders;
+        private System.Windows.Forms.ComboBox get_emps;
     }
 }
 
