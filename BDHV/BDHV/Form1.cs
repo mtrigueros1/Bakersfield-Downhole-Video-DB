@@ -20,18 +20,12 @@ namespace BDHV
         int numofboxes = 0;
         DateTime week1 = DateTime.MinValue;
         DateTime week2 = DateTime.MinValue;
+        string startcal;
+        string endcal;
+        string day1, day2, month1, month2, year1, year2;
         public Form1()
         {
             InitializeComponent();
-            Add_Date();
-            dd1_day.SelectedIndex = 0;
-            dd1_day2.SelectedIndex = 0;
-            Add_Month();
-            dd1_month.SelectedIndex = 0;
-            dd1_month2.SelectedIndex = 0;
-            Add_Year();
-            ddyear1.SelectedIndex = 0;
-            ddyear2.SelectedIndex = 0;
             Fill_employees();
             get_emps.SelectedIndex = 0;
             get_orders.Items.Add("Order Number");
@@ -51,45 +45,6 @@ namespace BDHV
 
         private void button1_Click(object sender, EventArgs e)
         {
-        }
-        private void Add_Date()
-        {
-            dd1_day.Items.Add("Day");
-            dd1_day2.Items.Add("Day");
-
-            for (int j = 0; j < 31; j++)
-            {
-                var newOption = Convert.ToString(j + 1);
-                dd1_day.Items.Add(newOption);
-                dd1_day2.Items.Add(newOption);
-            }
-        }
-
-        private void Add_Year()
-        {
-            ddyear1.Items.Add("Year");
-            ddyear2.Items.Add("Year");
-            for (int j = 0; j <= 6; j++)
-            {
-                var newOption = Convert.ToString(2010 + j);
-                ddyear1.Items.Add(newOption);
-                ddyear2.Items.Add(newOption);
-            }
-        }
-
-        private void Add_Month()
-        {
-            dd1_month.Items.Add("Month");
-            dd1_month2.Items.Add("Month");
-
-            for (int j = 0; j < 12; j++)
-            {
-                var newOption = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(j + 1);
-                dd1_month.Items.Add(newOption);
-                dd1_month2.Items.Add(newOption);
-                
-            }
-
         }
         private void Fill_employees()
         {
@@ -269,6 +224,24 @@ namespace BDHV
             }
         }
 
+        private void getstartdate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            startcal = getstartdate.SelectionRange.Start.ToShortDateString();
+            DateTime begdate = Convert.ToDateTime(startcal);
+            day1 = begdate.Day.ToString();
+            month1 = begdate.Month.ToString();
+            year1 = begdate.Year.ToString();
+        }
+
+        private void getenddate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            endcal = getstartdate.SelectionRange.Start.ToShortDateString();
+            DateTime enddate = Convert.ToDateTime(endcal);
+            day2 = enddate.Day.ToString();
+            month2 = enddate.Month.ToString();
+            year2 = enddate.Year.ToString();
+        }
+
         private void getorders_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (getorders.SelectedIndex != 0)
@@ -289,7 +262,7 @@ namespace BDHV
         private void button1_Click_1(object sender, EventArgs e)
         {
             string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
-            string s = dd1_month.SelectedIndex + "-" + dd1_day.SelectedIndex + "-" + ddyear1.SelectedItem;
+            string s = month1 + "-" + day1 + "-" + year1;
             Console.WriteLine(s);
             int correct = 0;
             DateTime dt;
@@ -302,11 +275,11 @@ namespace BDHV
             else
             {
                 week1 = dt;
-                s = dd1_day.SelectedIndex + "-" + dd1_month.SelectedIndex + "-" + ddyear1.SelectedItem;
+                s = day1 + "-" + month1 + "-" + year1;
                 correct += 1;
             }
 
-            string s2 = dd1_month2.SelectedIndex + "-" + dd1_day2.SelectedIndex + "-" + ddyear2.SelectedItem;
+            string s2 = month2 + "-" + day2 + "-" + year2;
             DateTime dt2;
             if (!DateTime.TryParse(s2, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt2))
             {
@@ -317,7 +290,7 @@ namespace BDHV
             else
             {
                 week2 = dt2;
-                s2 = dd1_day2.SelectedIndex + "-" + dd1_month2.SelectedIndex + "-" + ddyear2.SelectedItem;
+                s2 = day2 + "-" + month2 + "-" + year2;
                 correct += 1;
             }
             if (correct == 2)
@@ -440,6 +413,26 @@ namespace BDHV
             int numofboxes = weeks;
             Form2 frm = new Form2(numofboxes);
             frm.Show();
+        }
+
+        private void getstartdate_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            startcal = getstartdate.SelectionRange.Start.ToShortDateString();
+            DateTime begdate = Convert.ToDateTime(startcal);
+            Console.WriteLine(begdate);
+            day1 = begdate.Day.ToString();
+            month1 = begdate.Month.ToString();
+            year1 = begdate.Year.ToString();
+        }
+
+        private void getenddate_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            endcal = getenddate.SelectionRange.Start.ToShortDateString();
+            DateTime enddate = Convert.ToDateTime(endcal);
+            Console.WriteLine(enddate);
+            day2 = enddate.Day.ToString();
+            month2 = enddate.Month.ToString();
+            year2 = enddate.Year.ToString();
         }
     }
 }

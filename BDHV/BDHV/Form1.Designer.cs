@@ -57,12 +57,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.empprofit = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dd1_month2 = new System.Windows.Forms.ComboBox();
-            this.dd1_day2 = new System.Windows.Forms.ComboBox();
-            this.dd1_month = new System.Windows.Forms.ComboBox();
-            this.dd1_day = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.get_total_sums = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -94,8 +88,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.ddyear2 = new System.Windows.Forms.ComboBox();
-            this.ddyear1 = new System.Windows.Forms.ComboBox();
+            this.getstartdate = new System.Windows.Forms.MonthCalendar();
+            this.getenddate = new System.Windows.Forms.MonthCalendar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -123,15 +119,17 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 106);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(700, 366);
+            this.tabControl1.Size = new System.Drawing.Size(733, 447);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.DarkGray;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage1.Controls.Add(this.ddyear1);
-            this.tabPage1.Controls.Add(this.ddyear2);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.getenddate);
+            this.tabPage1.Controls.Add(this.getstartdate);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.overallprofit);
             this.tabPage1.Controls.Add(this.label38);
@@ -157,18 +155,12 @@
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.empprofit);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.dd1_month2);
-            this.tabPage1.Controls.Add(this.dd1_day2);
-            this.tabPage1.Controls.Add(this.dd1_month);
-            this.tabPage1.Controls.Add(this.dd1_day);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.get_total_sums);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(692, 337);
+            this.tabPage1.Size = new System.Drawing.Size(725, 418);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Overview";
             // 
@@ -185,7 +177,7 @@
             // 
             this.overallprofit.BackColor = System.Drawing.Color.Gray;
             this.overallprofit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overallprofit.Location = new System.Drawing.Point(563, 157);
+            this.overallprofit.Location = new System.Drawing.Point(632, 361);
             this.overallprofit.Name = "overallprofit";
             this.overallprofit.Size = new System.Drawing.Size(80, 21);
             this.overallprofit.TabIndex = 38;
@@ -195,7 +187,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(469, 159);
+            this.label38.Location = new System.Drawing.Point(538, 363);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(88, 16);
             this.label38.TabIndex = 37;
@@ -214,7 +206,7 @@
             // 
             this.equipmentid.BackColor = System.Drawing.Color.Gray;
             this.equipmentid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.equipmentid.Location = new System.Drawing.Point(180, 233);
+            this.equipmentid.Location = new System.Drawing.Point(173, 379);
             this.equipmentid.Name = "equipmentid";
             this.equipmentid.Size = new System.Drawing.Size(47, 21);
             this.equipmentid.TabIndex = 35;
@@ -225,7 +217,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(70, 235);
+            this.label27.Location = new System.Drawing.Point(63, 381);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(104, 16);
             this.label27.TabIndex = 34;
@@ -245,7 +237,7 @@
             // 
             this.equiphours.BackColor = System.Drawing.Color.Gray;
             this.equiphours.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.equiphours.Location = new System.Drawing.Point(563, 119);
+            this.equiphours.Location = new System.Drawing.Point(632, 323);
             this.equiphours.Name = "equiphours";
             this.equiphours.Size = new System.Drawing.Size(80, 21);
             this.equiphours.TabIndex = 32;
@@ -255,7 +247,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(387, 121);
+            this.label21.Location = new System.Drawing.Point(456, 325);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(170, 16);
             this.label21.TabIndex = 31;
@@ -274,7 +266,7 @@
             // 
             this.equipprofit.BackColor = System.Drawing.Color.Gray;
             this.equipprofit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.equipprofit.Location = new System.Drawing.Point(563, 89);
+            this.equipprofit.Location = new System.Drawing.Point(632, 293);
             this.equipprofit.Name = "equipprofit";
             this.equipprofit.Size = new System.Drawing.Size(80, 21);
             this.equipprofit.TabIndex = 29;
@@ -284,7 +276,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(363, 91);
+            this.label24.Location = new System.Drawing.Point(432, 295);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(194, 16);
             this.label24.TabIndex = 28;
@@ -303,7 +295,7 @@
             // 
             this.getorders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.getorders.FormattingEnabled = true;
-            this.getorders.Location = new System.Drawing.Point(95, 118);
+            this.getorders.Location = new System.Drawing.Point(88, 264);
             this.getorders.Name = "getorders";
             this.getorders.Size = new System.Drawing.Size(241, 24);
             this.getorders.TabIndex = 26;
@@ -313,7 +305,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(12, 121);
+            this.label16.Location = new System.Drawing.Point(5, 267);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(51, 16);
             this.label16.TabIndex = 25;
@@ -323,7 +315,7 @@
             // 
             this.equipname.BackColor = System.Drawing.Color.Gray;
             this.equipname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.equipname.Location = new System.Drawing.Point(180, 199);
+            this.equipname.Location = new System.Drawing.Point(173, 345);
             this.equipname.Name = "equipname";
             this.equipname.Size = new System.Drawing.Size(157, 21);
             this.equipname.TabIndex = 24;
@@ -334,7 +326,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(8, 201);
+            this.label17.Location = new System.Drawing.Point(1, 347);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(166, 16);
             this.label17.TabIndex = 23;
@@ -354,7 +346,7 @@
             // 
             this.complist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.complist.FormattingEnabled = true;
-            this.complist.Location = new System.Drawing.Point(96, 88);
+            this.complist.Location = new System.Drawing.Point(89, 234);
             this.complist.Name = "complist";
             this.complist.Size = new System.Drawing.Size(241, 24);
             this.complist.TabIndex = 21;
@@ -364,7 +356,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(13, 91);
+            this.label15.Location = new System.Drawing.Point(6, 237);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 16);
             this.label15.TabIndex = 20;
@@ -374,7 +366,7 @@
             // 
             this.emphours.BackColor = System.Drawing.Color.Gray;
             this.emphours.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emphours.Location = new System.Drawing.Point(563, 61);
+            this.emphours.Location = new System.Drawing.Point(632, 265);
             this.emphours.Name = "emphours";
             this.emphours.Size = new System.Drawing.Size(80, 21);
             this.emphours.TabIndex = 19;
@@ -384,7 +376,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(390, 63);
+            this.label7.Location = new System.Drawing.Point(459, 267);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(167, 16);
             this.label7.TabIndex = 18;
@@ -403,7 +395,7 @@
             // 
             this.empprofit.BackColor = System.Drawing.Color.Gray;
             this.empprofit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.empprofit.Location = new System.Drawing.Point(563, 31);
+            this.empprofit.Location = new System.Drawing.Point(632, 235);
             this.empprofit.Name = "empprofit";
             this.empprofit.Size = new System.Drawing.Size(80, 21);
             this.empprofit.TabIndex = 16;
@@ -413,68 +405,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(366, 33);
+            this.label4.Location = new System.Drawing.Point(435, 237);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(191, 16);
             this.label4.TabIndex = 15;
             this.label4.Text = "Employee Worktime Profit:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 16);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "End Date:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 16);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Start Date:";
-            // 
-            // dd1_month2
-            // 
-            this.dd1_month2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dd1_month2.FormattingEnabled = true;
-            this.dd1_month2.Location = new System.Drawing.Point(153, 58);
-            this.dd1_month2.Name = "dd1_month2";
-            this.dd1_month2.Size = new System.Drawing.Size(127, 24);
-            this.dd1_month2.TabIndex = 12;
-            // 
-            // dd1_day2
-            // 
-            this.dd1_day2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dd1_day2.FormattingEnabled = true;
-            this.dd1_day2.Location = new System.Drawing.Point(96, 58);
-            this.dd1_day2.Name = "dd1_day2";
-            this.dd1_day2.Size = new System.Drawing.Size(51, 24);
-            this.dd1_day2.TabIndex = 11;
-            // 
-            // dd1_month
-            // 
-            this.dd1_month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dd1_month.FormattingEnabled = true;
-            this.dd1_month.Location = new System.Drawing.Point(152, 28);
-            this.dd1_month.Name = "dd1_month";
-            this.dd1_month.Size = new System.Drawing.Size(128, 24);
-            this.dd1_month.TabIndex = 9;
-            // 
-            // dd1_day
-            // 
-            this.dd1_day.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dd1_day.DropDownWidth = 50;
-            this.dd1_day.FormattingEnabled = true;
-            this.dd1_day.Location = new System.Drawing.Point(95, 28);
-            this.dd1_day.Name = "dd1_day";
-            this.dd1_day.Size = new System.Drawing.Size(51, 24);
-            this.dd1_day.TabIndex = 8;
             // 
             // label1
             // 
@@ -487,7 +422,7 @@
             // 
             // get_total_sums
             // 
-            this.get_total_sums.Location = new System.Drawing.Point(152, 148);
+            this.get_total_sums.Location = new System.Drawing.Point(145, 294);
             this.get_total_sums.Name = "get_total_sums";
             this.get_total_sums.Size = new System.Drawing.Size(128, 23);
             this.get_total_sums.TabIndex = 6;
@@ -525,7 +460,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(692, 337);
+            this.tabPage2.Size = new System.Drawing.Size(725, 418);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add";
             // 
@@ -760,7 +695,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(692, 337);
+            this.tabPage3.Size = new System.Drawing.Size(725, 418);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Reports";
             // 
@@ -792,32 +727,50 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // ddyear2
+            // getstartdate
             // 
-            this.ddyear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddyear2.DropDownWidth = 50;
-            this.ddyear2.FormattingEnabled = true;
-            this.ddyear2.Location = new System.Drawing.Point(286, 58);
-            this.ddyear2.Name = "ddyear2";
-            this.ddyear2.Size = new System.Drawing.Size(65, 24);
-            this.ddyear2.TabIndex = 40;
+            this.getstartdate.Location = new System.Drawing.Point(66, 43);
+            this.getstartdate.MaxSelectionCount = 1;
+            this.getstartdate.Name = "getstartdate";
+            this.getstartdate.TabIndex = 42;
+            this.getstartdate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.getstartdate_DateChanged);
+            this.getstartdate.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.getstartdate_DateSelected);
             // 
-            // ddyear1
+            // getenddate
             // 
-            this.ddyear1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddyear1.DropDownWidth = 50;
-            this.ddyear1.FormattingEnabled = true;
-            this.ddyear1.Location = new System.Drawing.Point(286, 28);
-            this.ddyear1.Name = "ddyear1";
-            this.ddyear1.Size = new System.Drawing.Size(65, 24);
-            this.ddyear1.TabIndex = 41;
+            this.getenddate.Location = new System.Drawing.Point(435, 43);
+            this.getenddate.MaxSelectionCount = 1;
+            this.getenddate.Name = "getenddate";
+            this.getenddate.TabIndex = 43;
+            this.getenddate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.getenddate_DateChanged);
+            this.getenddate.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.getenddate_DateSelected);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(142, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 16);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "Start Date:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(507, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 16);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "End Date:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(724, 484);
+            this.ClientSize = new System.Drawing.Size(757, 565);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -842,14 +795,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button get_total_sums;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ComboBox dd1_month;
-        private System.Windows.Forms.ComboBox dd1_day;
-        private System.Windows.Forms.ComboBox dd1_month2;
-        private System.Windows.Forms.ComboBox dd1_day2;
         private System.Windows.Forms.Label empprofit;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label emphours;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -901,8 +848,10 @@
         private System.Windows.Forms.Label overallprofit;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.ComboBox ddyear1;
-        private System.Windows.Forms.ComboBox ddyear2;
+        private System.Windows.Forms.MonthCalendar getenddate;
+        private System.Windows.Forms.MonthCalendar getstartdate;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
 
