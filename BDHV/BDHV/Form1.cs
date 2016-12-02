@@ -16,6 +16,7 @@ namespace BDHV
     public partial class Form1 : Form
     {
         int[] EmpID = new int[100];
+        string[] compname = new string[100];
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +30,11 @@ namespace BDHV
             get_emps.SelectedIndex = 0;
             get_orders.Items.Add("Order Number");
             get_orders.SelectedIndex = 0;
-
+            complist.Items.Add("All Companys");
+            complist.SelectedIndex = 0;
+            Fill_companys();
+            getorders.Items.Add("All Orders");
+            getorders.SelectedIndex = 0;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -88,6 +93,26 @@ namespace BDHV
             }
 
         }
+        private void Fill_companys()
+        {
+            string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+            string cmdtxt = "select cName from CAM_COMPANY";
+            using (OracleConnection conn = new OracleConnection(oradb))
+            using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+            {
+                conn.Open();
+                OracleDataReader dr;
+                dr = cmd.ExecuteReader();
+                int i = 1;
+                while (dr.Read())
+                {
+                    complist.Items.Add(dr[0].ToString());
+                    compname[i] = Convert.ToString(dr[0].ToString());
+                    Console.WriteLine(compname[i]);
+                    i++;
+                }
+            }
+        }
 
         private void get_emps_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -110,7 +135,33 @@ namespace BDHV
             }
             
         }
-
+        private void complist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getorders.Items.Clear();
+            getorders.Items.Add("All Orders");
+            getorders.SelectedIndex = 0;
+            int selectedcomp = complist.SelectedIndex;
+            string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+            string cmdtxt = "select OrderID from CAM_MAKES where cName = '" + Convert.ToString(compname[selectedcomp]) + "'";
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(oradb))
+                using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+                {
+                    conn.Open();
+                    OracleDataReader dr;
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        getorders.Items.Add(dr[0].ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error:{0}", ex.Message);
+            }
+        }
         private void button1_Click_2(object sender, EventArgs e)
         {
             int selectedemp = get_emps.SelectedIndex;
@@ -197,6 +248,19 @@ namespace BDHV
             }
         }
 
+        private void getorders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (getorders.SelectedIndex != 0)
+            {
+                label17.Show();
+                equipname.Show();
+            } else
+            {
+                label17.Hide();
+                equipname.Hide();
+            }
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
@@ -208,6 +272,7 @@ namespace BDHV
             {
                 correct += 0;
                 Console.WriteLine("Date 1 wrong!");
+                MessageBox.Show("Incorrect Start Date!");
             }
             else
             {
@@ -221,6 +286,7 @@ namespace BDHV
             {
                 correct += 0;
                 Console.WriteLine("Date 2 wrong!");
+                MessageBox.Show("Incorrect End Date!");
             }
             else
             {
@@ -238,61 +304,108 @@ namespace BDHV
                     OracleConnection conn = new OracleConnection(oradb);
                     var cmd = new OracleCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "CAM_SumHours";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
-                    cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add("start_date", s);
-                    cmd.Parameters.Add("end_date", s2);
-                    cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
-                    cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    Console.WriteLine("Connection succesful!");
-                    Console.WriteLine(cmd.Parameters["hrsum"].Value);
-                    var rt = cmd.Parameters["hrsum"].Value;
-                    sumprofit = Convert.ToString(rt);
-                    conn.Close();
+                    if (complist.SelectedIndex == 0)
+                    {
+                        cmd.CommandText = "CAM_SumHours";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                        cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add("start_date", s);
+                        cmd.Parameters.Add("end_date", s2);
+                        cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                        cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("Connection succesful!");
+                        Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                        var rt = cmd.Parameters["hrsum"].Value;
+                        sumprofit = Convert.ToString(rt);
+                        conn.Close();
+                    } else
+                    {
+                        string comname = Convert.ToString(complist.SelectedItem);
+                        cmd.CommandText = "CAM_SumHoursSpecific";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                        cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add("start_date", s);
+                        cmd.Parameters.Add("end_date", s2);
+                        cmd.Parameters.Add("compname", comname);
+                        cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                        cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                        cmd.Parameters["compname"].Direction = ParameterDirection.Input;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("Connection succesful!");
+                        Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                        var rt = cmd.Parameters["hrsum"].Value;
+                        sumprofit = Convert.ToString(rt);
+                        conn.Close();
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error:{0}", ex.Message);
                 }
 
-                label5.Text = "$" + sumprofit;
+                empprofit.Text = "$" + sumprofit;
 
                 try
                 {
                     OracleConnection conn = new OracleConnection(oradb);
                     var cmd = new OracleCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "CAM_TotalHours";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
-                    cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add("start_date", s);
-                    cmd.Parameters.Add("end_date", s2);
-                    cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
-                    cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    Console.WriteLine("Connection succesful!");
-                    Console.WriteLine(cmd.Parameters["hrsum"].Value);
-                    var rt = cmd.Parameters["hrsum"].Value;
-                    sumhours = Convert.ToString(rt);
-                    conn.Close();
+                    if (complist.SelectedIndex == 0)
+                    {
+                        cmd.CommandText = "CAM_TotalHours";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                        cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add("start_date", s);
+                        cmd.Parameters.Add("end_date", s2);
+                        cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                        cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("Connection succesful!");
+                        Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                        var rt = cmd.Parameters["hrsum"].Value;
+                        sumhours = Convert.ToString(rt);
+                        conn.Close();
+
+                        
+                    } else
+                    {
+                        string comname = Convert.ToString(complist.SelectedItem);
+                        cmd.CommandText = "CAM_TotalHoursSpecific";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("hrsum", OracleDbType.Decimal);
+                        cmd.Parameters["hrsum"].Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add("start_date", s);
+                        cmd.Parameters.Add("end_date", s2);
+                        cmd.Parameters.Add("compname", comname);
+                        cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                        cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                        cmd.Parameters["compname"].Direction = ParameterDirection.Input;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("Connection succesful!");
+                        Console.WriteLine(cmd.Parameters["hrsum"].Value);
+                        var rt = cmd.Parameters["hrsum"].Value;
+                        sumhours = Convert.ToString(rt);
+                        conn.Close();
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error:{0}", ex.Message);
                 }
-                label6.Text = sumhours + " hrs";
+                emphours.Text = sumhours + " hrs";
 
             } else {
                 Console.WriteLine("Test was less than 2!");
             }
         }
-
-       
+        
     }
 }
