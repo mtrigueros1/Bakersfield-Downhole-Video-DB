@@ -254,10 +254,14 @@ namespace BDHV
             {
                 label17.Show();
                 equipname.Show();
+                label27.Show();
+                equipmentid.Show();
             } else
             {
                 label17.Hide();
                 equipname.Hide();
+                label27.Hide();
+                equipmentid.Hide();
             }
         }
 
