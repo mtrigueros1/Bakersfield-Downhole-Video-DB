@@ -61,12 +61,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dd1_month2 = new System.Windows.Forms.ComboBox();
             this.dd1_day2 = new System.Windows.Forms.ComboBox();
-            this.dd1_year2 = new System.Windows.Forms.TextBox();
             this.dd1_month = new System.Windows.Forms.ComboBox();
             this.dd1_day = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.get_total_sums = new System.Windows.Forms.Button();
-            this.dd1_year1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -96,6 +94,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.ddyear2 = new System.Windows.Forms.ComboBox();
+            this.ddyear1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -130,6 +130,8 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.DarkGray;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.ddyear1);
+            this.tabPage1.Controls.Add(this.ddyear2);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.overallprofit);
             this.tabPage1.Controls.Add(this.label38);
@@ -159,12 +161,10 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.dd1_month2);
             this.tabPage1.Controls.Add(this.dd1_day2);
-            this.tabPage1.Controls.Add(this.dd1_year2);
             this.tabPage1.Controls.Add(this.dd1_month);
             this.tabPage1.Controls.Add(this.dd1_day);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.get_total_sums);
-            this.tabPage1.Controls.Add(this.dd1_year1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -457,13 +457,6 @@
             this.dd1_day2.Size = new System.Drawing.Size(51, 24);
             this.dd1_day2.TabIndex = 11;
             // 
-            // dd1_year2
-            // 
-            this.dd1_year2.Location = new System.Drawing.Point(286, 58);
-            this.dd1_year2.Name = "dd1_year2";
-            this.dd1_year2.Size = new System.Drawing.Size(50, 22);
-            this.dd1_year2.TabIndex = 10;
-            // 
             // dd1_month
             // 
             this.dd1_month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -501,13 +494,6 @@
             this.get_total_sums.Text = "Submit";
             this.get_total_sums.UseVisualStyleBackColor = true;
             this.get_total_sums.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // dd1_year1
-            // 
-            this.dd1_year1.Location = new System.Drawing.Point(286, 28);
-            this.dd1_year1.Name = "dd1_year1";
-            this.dd1_year1.Size = new System.Drawing.Size(50, 22);
-            this.dd1_year1.TabIndex = 5;
             // 
             // tabPage2
             // 
@@ -804,6 +790,27 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "Generate Weekly";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // ddyear2
+            // 
+            this.ddyear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddyear2.DropDownWidth = 50;
+            this.ddyear2.FormattingEnabled = true;
+            this.ddyear2.Location = new System.Drawing.Point(286, 58);
+            this.ddyear2.Name = "ddyear2";
+            this.ddyear2.Size = new System.Drawing.Size(65, 24);
+            this.ddyear2.TabIndex = 40;
+            // 
+            // ddyear1
+            // 
+            this.ddyear1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddyear1.DropDownWidth = 50;
+            this.ddyear1.FormattingEnabled = true;
+            this.ddyear1.Location = new System.Drawing.Point(286, 28);
+            this.ddyear1.Name = "ddyear1";
+            this.ddyear1.Size = new System.Drawing.Size(65, 24);
+            this.ddyear1.TabIndex = 41;
             // 
             // Form1
             // 
@@ -834,13 +841,11 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button get_total_sums;
-        private System.Windows.Forms.TextBox dd1_year1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ComboBox dd1_month;
         private System.Windows.Forms.ComboBox dd1_day;
         private System.Windows.Forms.ComboBox dd1_month2;
         private System.Windows.Forms.ComboBox dd1_day2;
-        private System.Windows.Forms.TextBox dd1_year2;
         private System.Windows.Forms.Label empprofit;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -896,6 +901,8 @@
         private System.Windows.Forms.Label overallprofit;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.ComboBox ddyear1;
+        private System.Windows.Forms.ComboBox ddyear2;
     }
 }
 

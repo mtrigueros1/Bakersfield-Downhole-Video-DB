@@ -17,6 +17,9 @@ namespace BDHV
     {
         int[] EmpID = new int[100];
         string[] compname = new string[100];
+        int numofboxes = 0;
+        DateTime week1 = DateTime.MinValue;
+        DateTime week2 = DateTime.MinValue;
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +29,9 @@ namespace BDHV
             Add_Month();
             dd1_month.SelectedIndex = 0;
             dd1_month2.SelectedIndex = 0;
+            Add_Year();
+            ddyear1.SelectedIndex = 0;
+            ddyear2.SelectedIndex = 0;
             Fill_employees();
             get_emps.SelectedIndex = 0;
             get_orders.Items.Add("Order Number");
@@ -35,6 +41,7 @@ namespace BDHV
             Fill_companys();
             getorders.Items.Add("All Orders");
             getorders.SelectedIndex = 0;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,6 +64,19 @@ namespace BDHV
                 dd1_day2.Items.Add(newOption);
             }
         }
+
+        private void Add_Year()
+        {
+            ddyear1.Items.Add("Year");
+            ddyear2.Items.Add("Year");
+            for (int j = 0; j <= 6; j++)
+            {
+                var newOption = Convert.ToString(2010 + j);
+                ddyear1.Items.Add(newOption);
+                ddyear2.Items.Add(newOption);
+            }
+        }
+
         private void Add_Month()
         {
             dd1_month.Items.Add("Month");
@@ -164,6 +184,7 @@ namespace BDHV
         }
         private void button1_Click_2(object sender, EventArgs e)
         {
+            
             int selectedemp = get_emps.SelectedIndex;
             Console.WriteLine("Order Selected:" + get_orders.SelectedItem);
             Console.WriteLine("Employee Selected:" + EmpID[selectedemp]);
@@ -268,7 +289,7 @@ namespace BDHV
         private void button1_Click_1(object sender, EventArgs e)
         {
             string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
-            string s = dd1_month.SelectedIndex + "-" + dd1_day.SelectedIndex + "-" + dd1_year1.Text;
+            string s = dd1_month.SelectedIndex + "-" + dd1_day.SelectedIndex + "-" + ddyear1.SelectedItem;
             Console.WriteLine(s);
             int correct = 0;
             DateTime dt;
@@ -280,11 +301,12 @@ namespace BDHV
             }
             else
             {
-                s = dd1_day.SelectedIndex + "-" + dd1_month.SelectedIndex + "-" + dd1_year1.Text;
+                week1 = dt;
+                s = dd1_day.SelectedIndex + "-" + dd1_month.SelectedIndex + "-" + ddyear1.SelectedItem;
                 correct += 1;
             }
 
-            string s2 = dd1_month2.SelectedIndex + "-" + dd1_day2.SelectedIndex + "-" + dd1_year2.Text;
+            string s2 = dd1_month2.SelectedIndex + "-" + dd1_day2.SelectedIndex + "-" + ddyear2.SelectedItem;
             DateTime dt2;
             if (!DateTime.TryParse(s2, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt2))
             {
@@ -294,7 +316,8 @@ namespace BDHV
             }
             else
             {
-                s2 = dd1_day2.SelectedIndex + "-" + dd1_month2.SelectedIndex + "-" + dd1_year2.Text;
+                week2 = dt2;
+                s2 = dd1_day2.SelectedIndex + "-" + dd1_month2.SelectedIndex + "-" + ddyear2.SelectedItem;
                 correct += 1;
             }
             if (correct == 2)
@@ -410,6 +433,13 @@ namespace BDHV
                 Console.WriteLine("Test was less than 2!");
             }
         }
-        
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int weeks = Convert.ToInt32((week2 - week1).TotalDays / 7);
+            int numofboxes = weeks;
+            Form2 frm = new Form2(numofboxes);
+            frm.Show();
+        }
     }
 }
