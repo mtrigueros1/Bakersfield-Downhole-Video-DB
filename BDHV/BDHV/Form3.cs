@@ -48,6 +48,9 @@ namespace BDHV
            Console.WriteLine(Form1.month1);
            Form1.year1 = begdate.Year.ToString();
            Console.WriteLine(Form1.year1);
+            Form1.week = true;
+            Form1.month = false;
+            Form1.year = false;
             this.Close();
         }
 
@@ -68,7 +71,9 @@ namespace BDHV
             Form1.year1 = begdate.Year.ToString();
             Console.WriteLine(Form1.year1);
             this.Close();
-
+            Form1.week = true;
+            Form1.month = false;
+            Form1.year = false;
         }
 
         private void submonthbefore_Click(object sender, EventArgs e)
@@ -89,7 +94,9 @@ namespace BDHV
             Form1.year1 = begdate.Year.ToString();
             Console.WriteLine(Form1.year1);
             this.Close();
-
+            Form1.week = false;
+            Form1.month = true;
+            Form1.year = false;
         }
 
         private void submonthafter_Click(object sender, EventArgs e)
@@ -109,7 +116,9 @@ namespace BDHV
             Form1.year1 = begdate.Year.ToString();
             Console.WriteLine(Form1.year1);
             this.Close();
-
+            Form1.week = false;
+            Form1.month = true;
+            Form1.year = false;
         }
 
         private void subyearbefore_Click(object sender, EventArgs e)
@@ -130,7 +139,9 @@ namespace BDHV
             Form1.year1 = begdate.Year.ToString();
             Console.WriteLine(Form1.year1);
             this.Close();
-
+            Form1.week = false;
+            Form1.month = false;
+            Form1.year = true;
         }
 
         private void subyearafter_Click(object sender, EventArgs e)
@@ -150,7 +161,9 @@ namespace BDHV
             Form1.year1 = begdate.Year.ToString();
             Console.WriteLine(Form1.year1);
             this.Close();
-
+            Form1.week = false;
+            Form1.month = false;
+            Form1.year = true;
         }
     }
 }
