@@ -21,12 +21,12 @@ namespace BDHV
         string[] equipnames = new string[100];
         string[] equipids = new string[100];
         int[] get_orders_equipids = new int[100];
-        int numofboxes = 0;
-        DateTime week1 = DateTime.MinValue;
-        DateTime week2 = DateTime.MinValue;
+        public static DateTime week1 = DateTime.MinValue;
+        public static DateTime week2 = DateTime.MinValue;
         string endcal;
         public static string day1, day2, month1, month2, year1, year2;
         public static bool year, month, week;
+        public static string compselected, bestordnumselected, worstordnumselected, empprofselected, emphourselected, equipprofselected, totalprofselected;
         public Form1()
         {
             InitializeComponent();
@@ -121,6 +121,38 @@ namespace BDHV
                 }
             }*/
             
+        }
+
+        private void showorders_Click(object sender, EventArgs e)
+        {
+            string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+            string cmdtxt = "select * from cam_orderview";
+            Console.WriteLine(cmdtxt);
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(oradb))
+                using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+                {
+                    conn.Open();
+                    using (OracleDataReader dr = cmd.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dr);
+                        dataGridView1.DataSource = dataTable;
+                        dataGridView1.AutoResizeColumns();
+                        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                    }
+                    dataGridView1.AutoResizeColumns();
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error:{0}", ex.Message);
+            }
+            dataGridView1.Show();
         }
 
         private void complist_SelectedIndexChanged(object sender, EventArgs e)
@@ -1069,7 +1101,15 @@ namespace BDHV
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            compselected = Convert.ToString(complist.SelectedItem);
+            bestordnumselected = mostorderbox.Text;
+            worstordnumselected = leastorderbox.Text;
+            emphourselected = emphours.Text;
+            empprofselected = empprofit.Text;
+            equipprofselected = equipprofit.Text;
+            totalprofselected = overallprofit.Text;
+            Form2 frm = new Form2();
+            frm.Show();
         }
     }
 }
