@@ -26,7 +26,7 @@ namespace BDHV
         string endcal;
         public static string day1, day2, month1, month2, year1, year2;
         public static bool year, month, week;
-        public static string compselected, bestordnumselected, worstordnumselected, empprofselected, emphourselected, equipprofselected, totalprofselected;
+        public static string compselected, bestordnumselected, worstordnumselected, empprofselected, emphourselected, equipprofselected, totalprofselected, s, s2;
         public Form1()
         {
             InitializeComponent();
@@ -699,7 +699,7 @@ namespace BDHV
         private void button1_Click_1(object sender, EventArgs e)
         {
             string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
-            string s = month1 + "-" + day1 + "-" + year1;
+            s = month1 + "-" + day1 + "-" + year1;
             Console.WriteLine(s);
             int correct = 0;
             DateTime dt;
@@ -716,7 +716,7 @@ namespace BDHV
                 correct += 1;
             }
 
-            string s2 = month2 + "-" + day2 + "-" + year2;
+            s2 = month2 + "-" + day2 + "-" + year2;
             DateTime dt2;
             if (!DateTime.TryParse(s2, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt2))
             {
@@ -1101,15 +1101,103 @@ namespace BDHV
 
         private void button3_Click(object sender, EventArgs e)
         {
-            compselected = Convert.ToString(complist.SelectedItem);
-            bestordnumselected = mostorderbox.Text;
-            worstordnumselected = leastorderbox.Text;
-            emphourselected = emphours.Text;
-            empprofselected = empprofit.Text;
-            equipprofselected = equipprofit.Text;
-            totalprofselected = overallprofit.Text;
-            Form2 frm = new Form2();
-            frm.Show();
+            Console.WriteLine(getorders.SelectedIndex + " " + complist.SelectedIndex);
+            if (getorders.SelectedIndex == 0 && complist.SelectedIndex == 0)
+            {
+                compselected = Convert.ToString(complist.SelectedItem);
+                bestordnumselected = mostorderbox.Text;
+                worstordnumselected = leastorderbox.Text;
+                emphourselected = emphours.Text;
+                empprofselected = empprofit.Text;
+                equipprofselected = equipprofit.Text;
+                totalprofselected = overallprofit.Text;
+                Form2 frm = new Form2();
+                frm.Show();
+            }
+            else if (getorders.SelectedIndex == 0 && complist.SelectedIndex != 0)
+            {
+                string tempbignum = null;
+                string templownum = null;
+                compselected = Convert.ToString(complist.SelectedItem);
+                string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+                try
+                {
+                    OracleConnection conn = new OracleConnection(oradb);
+                    var cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    string comname = Convert.ToString(complist.SelectedItem);
+                    cmd.CommandText = "CAM_GETHIGHORDER";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("highnum", OracleDbType.Decimal);
+                    cmd.Parameters["highnum"].Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add("start_date", s);
+                    cmd.Parameters.Add("end_date", s2);
+                    cmd.Parameters.Add("comname", comname);
+                    cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                    cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                    cmd.Parameters["comname"].Direction = ParameterDirection.Input;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Connection succesful!");
+                    Console.WriteLine(cmd.Parameters["highnum"].Value);
+                    var rt = cmd.Parameters["highnum"].Value;
+                    tempbignum = Convert.ToString(rt);
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
+                try
+                {
+                    OracleConnection conn = new OracleConnection(oradb);
+                    var cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    string comname = Convert.ToString(complist.SelectedItem);
+                    cmd.CommandText = "CAM_GETLOWORDER";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("lownum", OracleDbType.Decimal);
+                    cmd.Parameters["lownum"].Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add("start_date", s);
+                    cmd.Parameters.Add("end_date", s2);
+                    cmd.Parameters.Add("comname", comname);
+                    cmd.Parameters["end_date"].Direction = ParameterDirection.Input;
+                    cmd.Parameters["start_date"].Direction = ParameterDirection.Input;
+                    cmd.Parameters["comname"].Direction = ParameterDirection.Input;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Connection succesful!");
+                    Console.WriteLine(cmd.Parameters["lownum"].Value);
+                    var rt = cmd.Parameters["lownum"].Value;
+                    templownum = Convert.ToString(rt);
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
+                if (tempbignum != null)
+                {
+                    bestordnumselected = tempbignum;
+                } else
+                {
+                    bestordnumselected = "NA";
+                }
+                if (templownum != null)
+                {
+                    worstordnumselected = templownum;
+                }
+                else
+                {
+                    worstordnumselected = "NA";
+                }
+                emphourselected = emphours.Text;
+                empprofselected = empprofit.Text;
+                equipprofselected = equipprofit.Text;
+                totalprofselected = overallprofit.Text;
+                Form4 frm = new Form4();
+                frm.Show();
+            }
         }
     }
 }

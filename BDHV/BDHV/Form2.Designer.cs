@@ -635,6 +635,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.finalincome);
             this.panel1.Controls.Add(this.totalempincome);
@@ -695,7 +696,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(722, 702);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
