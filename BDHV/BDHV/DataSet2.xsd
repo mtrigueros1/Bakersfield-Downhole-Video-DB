@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet2" targetNamespace="http://tempuri.org/DataSet2.xsd" xmlns:mstns="http://tempuri.org/DataSet2.xsd" xmlns="http://tempuri.org/DataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Connect_to_delphi" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Connect_to_delphi (Settings)" ParameterPrefix=":" PropertyReference="ApplicationSettings.BDHV.Properties.Settings.GlobalReference.Default.Connect_to_delphi" Provider="Oracle.ManagedDataAccess.Client" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CAM_MASTERPROFITTableAdapter" GeneratorDataComponentClassName="CAM_MASTERPROFITTableAdapter" Name="CAM_MASTERPROFIT" UserDataComponentName="CAM_MASTERPROFITTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Connect_to_delphi (Settings)" DbObjectName="CS3420.CAM_MASTERPROFIT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ORDERID, TOTALSUM FROM CS3420.CAM_MASTERPROFIT</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ORDERID" DataSetColumn="ORDERID" />
+              <Mapping SourceColumn="TOTALSUM" DataSetColumn="TOTALSUM" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CAM_MASTERPROFIT" msprop:Generator_TableClassName="CAM_MASTERPROFITDataTable" msprop:Generator_TableVarName="tableCAM_MASTERPROFIT" msprop:Generator_TablePropName="CAM_MASTERPROFIT" msprop:Generator_RowDeletingName="CAM_MASTERPROFITRowDeleting" msprop:Generator_RowChangingName="CAM_MASTERPROFITRowChanging" msprop:Generator_RowEvHandlerName="CAM_MASTERPROFITRowChangeEventHandler" msprop:Generator_RowDeletedName="CAM_MASTERPROFITRowDeleted" msprop:Generator_UserTableName="CAM_MASTERPROFIT" msprop:Generator_RowChangedName="CAM_MASTERPROFITRowChanged" msprop:Generator_RowEvArgName="CAM_MASTERPROFITRowChangeEvent" msprop:Generator_RowClassName="CAM_MASTERPROFITRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ORDERID" msprop:Generator_ColumnVarNameInTable="columnORDERID" msprop:Generator_ColumnPropNameInRow="ORDERID" msprop:Generator_ColumnPropNameInTable="ORDERIDColumn" msprop:Generator_UserColumnName="ORDERID" type="xs:long" />
+              <xs:element name="TOTALSUM" msprop:Generator_ColumnVarNameInTable="columnTOTALSUM" msprop:Generator_ColumnPropNameInRow="TOTALSUM" msprop:Generator_ColumnPropNameInTable="TOTALSUMColumn" msprop:Generator_UserColumnName="TOTALSUM" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

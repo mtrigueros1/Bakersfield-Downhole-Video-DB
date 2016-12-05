@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            this.CAM_MASTERPROFITBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSet2 = new BDHV.DataSet2();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -83,7 +88,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.CAM_MASTERPROFITTableAdapter = new BDHV.DataSet2TableAdapters.CAM_MASTERPROFITTableAdapter();
+            this.CAM_ORDERVIEWGROUPEDBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSet1 = new BDHV.DataSet1();
+            this.CAM_ORDERVIEWGROUPEDTableAdapter = new BDHV.DataSet1TableAdapters.CAM_ORDERVIEWGROUPEDTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_MASTERPROFITBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -92,7 +104,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_ORDERVIEWGROUPEDBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // CAM_MASTERPROFITBindingSource
+            // 
+            this.CAM_MASTERPROFITBindingSource.DataMember = "CAM_MASTERPROFIT";
+            this.CAM_MASTERPROFITBindingSource.DataSource = this.DataSet2;
+            // 
+            // DataSet2
+            // 
+            this.DataSet2.DataSetName = "DataSet2";
+            this.DataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // pictureBox2
             // 
@@ -614,18 +638,19 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(231, 667);
+            this.button1.Location = new System.Drawing.Point(228, 926);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 23);
             this.button1.TabIndex = 51;
             this.button1.Text = "Print Report";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(349, 667);
+            this.button2.Location = new System.Drawing.Point(383, 926);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 23);
             this.button2.TabIndex = 52;
@@ -636,6 +661,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.reportViewer1);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.finalincome);
             this.panel1.Controls.Add(this.totalempincome);
@@ -687,17 +713,49 @@
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label21);
-            this.panel1.Location = new System.Drawing.Point(2, 3);
+            this.panel1.Location = new System.Drawing.Point(2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(719, 658);
+            this.panel1.Size = new System.Drawing.Size(882, 919);
             this.panel1.TabIndex = 53;
+            // 
+            // reportViewer1
+            // 
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.CAM_ORDERVIEWGROUPEDBindingSource;
+            reportDataSource2.Name = "DataSet2";
+            reportDataSource2.Value = this.CAM_MASTERPROFITBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "BDHV.Report2.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(882, 876);
+            this.reportViewer1.TabIndex = 51;
+            // 
+            // CAM_MASTERPROFITTableAdapter
+            // 
+            this.CAM_MASTERPROFITTableAdapter.ClearBeforeFill = true;
+            // 
+            // CAM_ORDERVIEWGROUPEDBindingSource
+            // 
+            this.CAM_ORDERVIEWGROUPEDBindingSource.DataMember = "CAM_ORDERVIEWGROUPED";
+            this.CAM_ORDERVIEWGROUPEDBindingSource.DataSource = this.DataSet1;
+            // 
+            // DataSet1
+            // 
+            this.DataSet1.DataSetName = "DataSet1";
+            this.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // CAM_ORDERVIEWGROUPEDTableAdapter
+            // 
+            this.CAM_ORDERVIEWGROUPEDTableAdapter.ClearBeforeFill = true;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(722, 702);
+            this.ClientSize = new System.Drawing.Size(884, 961);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -705,6 +763,9 @@
             this.Name = "Form2";
             this.Text = "Report Viewer";
             this.TransparencyKey = System.Drawing.Color.Magenta;
+            this.Load += new System.EventHandler(this.Form2_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_MASTERPROFITBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -714,6 +775,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_ORDERVIEWGROUPEDBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -775,5 +838,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource CAM_ORDERVIEWGROUPEDBindingSource;
+        private DataSet1 DataSet1;
+        private DataSet1TableAdapters.CAM_ORDERVIEWGROUPEDTableAdapter CAM_ORDERVIEWGROUPEDTableAdapter;
+        private System.Windows.Forms.BindingSource CAM_MASTERPROFITBindingSource;
+        private DataSet2 DataSet2;
+        private DataSet2TableAdapters.CAM_MASTERPROFITTableAdapter CAM_MASTERPROFITTableAdapter;
     }
 }

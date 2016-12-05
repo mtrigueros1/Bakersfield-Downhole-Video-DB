@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.finalincome = new System.Windows.Forms.Label();
             this.totalempincome = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.reportenddate = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.reportcompincluded = new System.Windows.Forms.Label();
@@ -44,19 +49,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.orderenddatetext = new System.Windows.Forms.Label();
             this.equipusedtext = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.orderstartdatetext = new System.Windows.Forms.Label();
             this.totalorderprofittext = new System.Windows.Forms.Label();
             this.ordernumbertext = new System.Windows.Forms.Label();
             this.companynametext = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.labelforcomp = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.leastorderprofit = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.totalequipincome = new System.Windows.Forms.Label();
             this.leastorderequip = new System.Windows.Forms.Label();
@@ -73,15 +83,15 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.DataSet1 = new BDHV.DataSet1();
+            this.CAM_ORDERVIEWGROUPEDBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CAM_ORDERVIEWGROUPEDTableAdapter = new BDHV.DataSet1TableAdapters.CAM_ORDERVIEWGROUPEDTableAdapter();
+            this.DataSet4 = new BDHV.DataSet4();
+            this.CAM_EMPVIEWBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CAM_EMPVIEWTableAdapter = new BDHV.DataSet4TableAdapters.CAM_EMPVIEWTableAdapter();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -90,11 +100,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_ORDERVIEWGROUPEDBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_EMPVIEWBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.reportViewer1);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.finalincome);
             this.panel1.Controls.Add(this.totalempincome);
@@ -146,9 +161,9 @@
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label21);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(719, 658);
+            this.panel1.Size = new System.Drawing.Size(860, 908);
             this.panel1.TabIndex = 0;
             // 
             // label16
@@ -181,6 +196,16 @@
             this.totalempincome.TabIndex = 98;
             this.totalempincome.Text = "NA";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::BDHV.Properties.Resources.bdhv_contact;
+            this.pictureBox2.Location = new System.Drawing.Point(502, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(217, 136);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 52;
+            this.pictureBox2.TabStop = false;
+            // 
             // reportenddate
             // 
             this.reportenddate.AutoSize = true;
@@ -192,6 +217,16 @@
             this.reportenddate.Size = new System.Drawing.Size(89, 15);
             this.reportenddate.TabIndex = 59;
             this.reportenddate.Text = "Not Selected";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BDHV.Properties.Resources.bdhv_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(496, 136);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -313,6 +348,15 @@
             this.label9.TabIndex = 69;
             this.label9.Text = "Order Start Date:";
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Red;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 135);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(713, 41);
+            this.pictureBox3.TabIndex = 53;
+            this.pictureBox3.TabStop = false;
+            // 
             // orderenddatetext
             // 
             this.orderenddatetext.AutoSize = true;
@@ -332,6 +376,15 @@
             this.equipusedtext.Size = new System.Drawing.Size(27, 16);
             this.equipusedtext.TabIndex = 76;
             this.equipusedtext.Text = "NA";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Black;
+            this.pictureBox4.Location = new System.Drawing.Point(6, 207);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(713, 10);
+            this.pictureBox4.TabIndex = 60;
+            this.pictureBox4.TabStop = false;
             // 
             // label7
             // 
@@ -383,6 +436,15 @@
             this.companynametext.TabIndex = 73;
             this.companynametext.Text = "NA";
             // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Black;
+            this.pictureBox6.Location = new System.Drawing.Point(280, 390);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(152, 10);
+            this.pictureBox6.TabIndex = 81;
+            this.pictureBox6.TabStop = false;
+            // 
             // labelforcomp
             // 
             this.labelforcomp.AutoSize = true;
@@ -392,6 +454,15 @@
             this.labelforcomp.Size = new System.Drawing.Size(105, 16);
             this.labelforcomp.TabIndex = 77;
             this.labelforcomp.Text = "Order Income:";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.Black;
+            this.pictureBox5.Location = new System.Drawing.Point(281, 250);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(152, 10);
+            this.pictureBox5.TabIndex = 67;
+            this.pictureBox5.TabStop = false;
             // 
             // label10
             // 
@@ -442,6 +513,15 @@
             this.label11.Size = new System.Drawing.Size(198, 16);
             this.label11.TabIndex = 71;
             this.label11.Text = "Amount of Equipment Used:";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.Black;
+            this.pictureBox7.Location = new System.Drawing.Point(3, 540);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(713, 10);
+            this.pictureBox7.TabIndex = 93;
+            this.pictureBox7.TabStop = false;
             // 
             // label13
             // 
@@ -603,75 +683,10 @@
             this.label21.TabIndex = 83;
             this.label21.Text = "Order Start Date:";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::BDHV.Properties.Resources.bdhv_contact;
-            this.pictureBox2.Location = new System.Drawing.Point(502, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(217, 136);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 52;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BDHV.Properties.Resources.bdhv_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(496, 136);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 51;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Red;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 135);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(713, 41);
-            this.pictureBox3.TabIndex = 53;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Black;
-            this.pictureBox4.Location = new System.Drawing.Point(6, 207);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(713, 10);
-            this.pictureBox4.TabIndex = 60;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Black;
-            this.pictureBox6.Location = new System.Drawing.Point(280, 390);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(152, 10);
-            this.pictureBox6.TabIndex = 81;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Black;
-            this.pictureBox5.Location = new System.Drawing.Point(281, 250);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(152, 10);
-            this.pictureBox5.TabIndex = 67;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Black;
-            this.pictureBox7.Location = new System.Drawing.Point(3, 540);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(713, 10);
-            this.pictureBox7.TabIndex = 93;
-            this.pictureBox7.TabStop = false;
-            // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(343, 664);
+            this.button2.Location = new System.Drawing.Point(393, 926);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 23);
             this.button2.TabIndex = 54;
@@ -682,25 +697,69 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(225, 664);
+            this.button1.Location = new System.Drawing.Point(237, 926);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 23);
             this.button1.TabIndex = 53;
             this.button1.Text = "Print Report";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // reportViewer1
+            // 
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.CAM_ORDERVIEWGROUPEDBindingSource;
+            reportDataSource2.Name = "DataSet2";
+            reportDataSource2.Value = this.CAM_EMPVIEWBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "BDHV.Report3.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, -2);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(860, 910);
+            this.reportViewer1.TabIndex = 102;
+            // 
+            // DataSet1
+            // 
+            this.DataSet1.DataSetName = "DataSet1";
+            this.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // CAM_ORDERVIEWGROUPEDBindingSource
+            // 
+            this.CAM_ORDERVIEWGROUPEDBindingSource.DataMember = "CAM_ORDERVIEWGROUPED";
+            this.CAM_ORDERVIEWGROUPEDBindingSource.DataSource = this.DataSet1;
+            // 
+            // CAM_ORDERVIEWGROUPEDTableAdapter
+            // 
+            this.CAM_ORDERVIEWGROUPEDTableAdapter.ClearBeforeFill = true;
+            // 
+            // DataSet4
+            // 
+            this.DataSet4.DataSetName = "DataSet4";
+            this.DataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // CAM_EMPVIEWBindingSource
+            // 
+            this.CAM_EMPVIEWBindingSource.DataMember = "CAM_EMPVIEW";
+            this.CAM_EMPVIEWBindingSource.DataSource = this.DataSet4;
+            // 
+            // CAM_EMPVIEWTableAdapter
+            // 
+            this.CAM_EMPVIEWTableAdapter.ClearBeforeFill = true;
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(722, 692);
+            this.ClientSize = new System.Drawing.Size(884, 961);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Name = "Form4";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -710,6 +769,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_ORDERVIEWGROUPEDBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CAM_EMPVIEWBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -770,5 +833,12 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource CAM_ORDERVIEWGROUPEDBindingSource;
+        private DataSet1 DataSet1;
+        private DataSet1TableAdapters.CAM_ORDERVIEWGROUPEDTableAdapter CAM_ORDERVIEWGROUPEDTableAdapter;
+        private System.Windows.Forms.BindingSource CAM_EMPVIEWBindingSource;
+        private DataSet4 DataSet4;
+        private DataSet4TableAdapters.CAM_EMPVIEWTableAdapter CAM_EMPVIEWTableAdapter;
     }
 }

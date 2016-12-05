@@ -14,6 +14,7 @@ using System.Drawing.Printing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Drawing.Imaging;
+using Microsoft.Reporting.WinForms;
 
 namespace BDHV
 {
@@ -168,6 +169,24 @@ namespace BDHV
         private void button2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'DataSet4.CAM_EMPVIEW' table. You can move, or remove it, as needed.
+            this.CAM_EMPVIEWTableAdapter.Fill(this.DataSet4.CAM_EMPVIEW);
+            // TODO: This line of code loads data into the 'DataSet1.CAM_ORDERVIEWGROUPED' table. You can move, or remove it, as needed.
+            this.CAM_ORDERVIEWGROUPEDTableAdapter.Fill(this.DataSet1.CAM_ORDERVIEWGROUPED);
+            ReportParameter[] param = new ReportParameter[6];
+            param[0] = new ReportParameter("totalincome", Form1.totalprofselected);
+            param[1] = new ReportParameter("empincome", Form1.empprofselected);
+            param[2] = new ReportParameter("equipincome", Form1.equipprofselected);
+            param[3] = new ReportParameter("hoursworked", Form1.emphourselected);
+            param[4] = new ReportParameter("equipid", Form1.equipselid);
+            param[5] = new ReportParameter("equipused", Form1.equipsel);
+            this.reportViewer1.LocalReport.EnableExternalImages = true;
+            this.reportViewer1.LocalReport.SetParameters(param);
+            this.reportViewer1.RefreshReport();
         }
     }
 }

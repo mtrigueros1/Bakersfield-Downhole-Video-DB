@@ -27,6 +27,8 @@ namespace BDHV
         public static string day1, day2, month1, month2, year1, year2;
         public static bool year, month, week;
         public static string compselected, bestordnumselected, worstordnumselected, empprofselected, emphourselected, equipprofselected, totalprofselected, s, s2;
+        public static DataTable pls = new DataTable();
+        public static string equipsel, equipselid;
         public Form1()
         {
             InitializeComponent();
@@ -96,6 +98,7 @@ namespace BDHV
                     Console.WriteLine(compname[i]);
                     i++;
                 }
+               
             }
         }
 
@@ -134,9 +137,10 @@ namespace BDHV
                 using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
                 {
                     conn.Open();
+                    DataTable dataTable = new DataTable();
                     using (OracleDataReader dr = cmd.ExecuteReader())
                     {
-                        DataTable dataTable = new DataTable();
+                        
                         dataTable.Load(dr);
                         dataGridView1.DataSource = dataTable;
                         dataGridView1.AutoResizeColumns();
@@ -145,7 +149,7 @@ namespace BDHV
                     }
                     dataGridView1.AutoResizeColumns();
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
+                    pls = dataTable;
                 }
             }
             catch (Exception ex)
@@ -1104,6 +1108,27 @@ namespace BDHV
             Console.WriteLine(getorders.SelectedIndex + " " + complist.SelectedIndex);
             if (getorders.SelectedIndex == 0 && complist.SelectedIndex == 0)
             {
+                string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+                string cmdtxt = "CREATE OR REPLACE VIEW CAM_ORDERVIEWGROUPED as " +
+                    "select (c.cname)company, SUM(b.bsum + q.csum) Profit, (j.jobtype)jobtype, (q.estartdate) started, (q.eenddate) ended " +
+                    "from cam_makes c, cam_emphours b, cam_mosthours q, cam_order j " +
+                    "where q.orderid = c.orderid and b.orderid = c.orderid and j.orderid = c.orderid and q.eenddate > to_date('" + s + "','DD-MM-YYYY') and q.estartdate < to_date('" + s2 + "','DD-MM-YYYY')" +
+                    " group by c.cname, j.jobtype, q.estartdate, q.eenddate" +
+                    " order by c.cname";
+                Console.WriteLine(cmdtxt);
+                try
+                {
+                    using (OracleConnection conn = new OracleConnection(oradb))
+                    using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
                 compselected = Convert.ToString(complist.SelectedItem);
                 bestordnumselected = mostorderbox.Text;
                 worstordnumselected = leastorderbox.Text;
@@ -1179,7 +1204,8 @@ namespace BDHV
                 if (tempbignum != null)
                 {
                     bestordnumselected = tempbignum;
-                } else
+                }
+                else
                 {
                     bestordnumselected = "NA";
                 }
@@ -1195,6 +1221,79 @@ namespace BDHV
                 empprofselected = empprofit.Text;
                 equipprofselected = equipprofit.Text;
                 totalprofselected = overallprofit.Text;
+
+                string cmdtxt = "CREATE OR REPLACE VIEW CAM_ORDERVIEWGROUPED as " +
+                    "select (c.cname)company, SUM(b.bsum + q.csum) Profit, (j.jobtype)jobtype, (q.estartdate) started, (q.eenddate) ended " +
+                    "from cam_makes c, cam_emphours b, cam_mosthours q, cam_order j " +
+                    "where q.orderid = c.orderid and b.orderid = c.orderid and j.orderid = c.orderid and c.cname = '" + Convert.ToString(complist.SelectedItem) + "' and q.eenddate > to_date('" + s + "','DD-MM-YYYY') and q.estartdate < to_date('" + s2 + "','DD-MM-YYYY')" +
+                    " group by c.cname, j.jobtype, q.estartdate, q.eenddate" +
+                    " order by c.cname";
+                Console.WriteLine(cmdtxt);
+                try
+                {
+                    using (OracleConnection conn = new OracleConnection(oradb))
+                    using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
+                Form2 frm = new Form2();
+                frm.Show();
+            }
+            else if (getorders.SelectedIndex != 0 && complist.SelectedIndex != 0)
+            {
+                compselected = Convert.ToString(complist.SelectedItem);
+                bestordnumselected = mostorderbox.Text;
+                worstordnumselected = leastorderbox.Text;
+                emphourselected = emphours.Text;
+                empprofselected = empprofit.Text;
+                equipprofselected = equipprofit.Text;
+                totalprofselected = overallprofit.Text;
+                equipsel = equipnamebox1.Text;
+                equipselid = equipidbox1.Text;
+                string oradb = "DATA SOURCE=delphi.cs.csubak.edu:1521/dbs01.cs.csubak;USER ID=cs3420; PASSWORD=c3m4p2s";
+                string cmdtxt = "CREATE OR REPLACE VIEW CAM_ORDERVIEWGROUPED as " +
+                    "select (c.cname)company, SUM(b.bsum + q.csum) Profit, (j.jobtype)jobtype, (q.estartdate) started, (q.eenddate) ended " +
+                    "from cam_makes c, cam_emphours b, cam_mosthours q, cam_order j " +
+                    "where q.orderid = " + Convert.ToString(getorders.SelectedItem) + " and b.orderid = c.orderid and j.orderid = c.orderid and c.orderid = " + Convert.ToString(getorders.SelectedItem) + " and c.cname = '" + Convert.ToString(complist.SelectedItem) + "'" +
+                    " group by c.cname, j.jobtype, q.estartdate, q.eenddate" +
+                    " order by c.cname";
+                Console.WriteLine(cmdtxt);
+                try
+                {
+                    using (OracleConnection conn = new OracleConnection(oradb))
+                    using (OracleCommand cmd = new OracleCommand(cmdtxt, conn))
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
+                string cmdtxt2 = "CREATE OR REPLACE VIEW CAM_EMPVIEW as select (e.empname) name, (e.empssn)social, w.orderid from cam_employee e, cam_workson w " +
+                                   "where e.empssn = w.empssn and w.orderid = " + Convert.ToString(getorders.SelectedItem) +
+                                    " order by w.orderid";
+                Console.WriteLine(cmdtxt);
+                try
+                {
+                    using (OracleConnection conn = new OracleConnection(oradb))
+                    using (OracleCommand cmd = new OracleCommand(cmdtxt2, conn))
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:{0}", ex.Message);
+                }
                 Form4 frm = new Form4();
                 frm.Show();
             }

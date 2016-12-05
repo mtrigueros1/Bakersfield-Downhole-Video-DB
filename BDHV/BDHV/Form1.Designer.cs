@@ -32,6 +32,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.leasthoursbox = new System.Windows.Forms.Label();
             this.leasthourslabel = new System.Windows.Forms.Label();
             this.mosthoursbox = new System.Windows.Forms.Label();
@@ -113,10 +114,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.get_orders = new System.Windows.Forms.ComboBox();
             this.get_emps = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.showorders = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.showorders = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -222,6 +222,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Overview";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(119, 174);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(185, 23);
+            this.button3.TabIndex = 82;
+            this.button3.Text = "Generate Report";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // leasthoursbox
             // 
             this.leasthoursbox.BackColor = System.Drawing.Color.Gray;
@@ -239,7 +249,7 @@
             this.leasthourslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.leasthourslabel.Location = new System.Drawing.Point(478, 160);
             this.leasthourslabel.Name = "leasthourslabel";
-            this.leasthourslabel.Size = new System.Drawing.Size(153, 16);
+            this.leasthourslabel.Size = new System.Drawing.Size(159, 16);
             this.leasthourslabel.TabIndex = 80;
             this.leasthourslabel.Text = "Least Hours Worked:";
             this.leasthourslabel.Visible = false;
@@ -261,7 +271,7 @@
             this.mosthourslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mosthourslabel.Location = new System.Drawing.Point(483, 128);
             this.mosthourslabel.Name = "mosthourslabel";
-            this.mosthourslabel.Size = new System.Drawing.Size(148, 16);
+            this.mosthourslabel.Size = new System.Drawing.Size(154, 16);
             this.mosthourslabel.TabIndex = 78;
             this.mosthourslabel.Text = "Most Hours Worked:";
             this.mosthourslabel.Visible = false;
@@ -283,7 +293,7 @@
             this.leastorderlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.leastorderlabel.Location = new System.Drawing.Point(467, 100);
             this.leastorderlabel.Name = "leastorderlabel";
-            this.leastorderlabel.Size = new System.Drawing.Size(164, 16);
+            this.leastorderlabel.Size = new System.Drawing.Size(170, 16);
             this.leastorderlabel.TabIndex = 76;
             this.leastorderlabel.Text = "Least Profitable Order:";
             this.leastorderlabel.Visible = false;
@@ -305,7 +315,7 @@
             this.mostorderlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mostorderlabel.Location = new System.Drawing.Point(472, 70);
             this.mostorderlabel.Name = "mostorderlabel";
-            this.mostorderlabel.Size = new System.Drawing.Size(159, 16);
+            this.mostorderlabel.Size = new System.Drawing.Size(165, 16);
             this.mostorderlabel.TabIndex = 74;
             this.mostorderlabel.Text = "Most Profitable Order:";
             this.mostorderlabel.Visible = false;
@@ -345,7 +355,7 @@
             this.equipid5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipid5.Location = new System.Drawing.Point(341, 365);
             this.equipid5.Name = "equipid5";
-            this.equipid5.Size = new System.Drawing.Size(27, 16);
+            this.equipid5.Size = new System.Drawing.Size(30, 16);
             this.equipid5.TabIndex = 70;
             this.equipid5.Text = "ID:";
             this.equipid5.Visible = false;
@@ -376,7 +386,7 @@
             this.equipname5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipname5.Location = new System.Drawing.Point(6, 365);
             this.equipname5.Name = "equipname5";
-            this.equipname5.Size = new System.Drawing.Size(126, 16);
+            this.equipname5.Size = new System.Drawing.Size(130, 16);
             this.equipname5.TabIndex = 67;
             this.equipname5.Text = "Equipment Used:";
             this.equipname5.Visible = false;
@@ -416,7 +426,7 @@
             this.equipid2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipid2.Location = new System.Drawing.Point(341, 280);
             this.equipid2.Name = "equipid2";
-            this.equipid2.Size = new System.Drawing.Size(27, 16);
+            this.equipid2.Size = new System.Drawing.Size(30, 16);
             this.equipid2.TabIndex = 63;
             this.equipid2.Text = "ID:";
             this.equipid2.Visible = false;
@@ -447,7 +457,7 @@
             this.equipname2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipname2.Location = new System.Drawing.Point(6, 280);
             this.equipname2.Name = "equipname2";
-            this.equipname2.Size = new System.Drawing.Size(126, 16);
+            this.equipname2.Size = new System.Drawing.Size(130, 16);
             this.equipname2.TabIndex = 60;
             this.equipname2.Text = "Equipment Used:";
             this.equipname2.Visible = false;
@@ -487,7 +497,7 @@
             this.equipid4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipid4.Location = new System.Drawing.Point(341, 335);
             this.equipid4.Name = "equipid4";
-            this.equipid4.Size = new System.Drawing.Size(27, 16);
+            this.equipid4.Size = new System.Drawing.Size(30, 16);
             this.equipid4.TabIndex = 56;
             this.equipid4.Text = "ID:";
             this.equipid4.Visible = false;
@@ -518,7 +528,7 @@
             this.equipname4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipname4.Location = new System.Drawing.Point(6, 335);
             this.equipname4.Name = "equipname4";
-            this.equipname4.Size = new System.Drawing.Size(126, 16);
+            this.equipname4.Size = new System.Drawing.Size(130, 16);
             this.equipname4.TabIndex = 53;
             this.equipname4.Text = "Equipment Used:";
             this.equipname4.Visible = false;
@@ -558,7 +568,7 @@
             this.equipid3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipid3.Location = new System.Drawing.Point(341, 308);
             this.equipid3.Name = "equipid3";
-            this.equipid3.Size = new System.Drawing.Size(27, 16);
+            this.equipid3.Size = new System.Drawing.Size(30, 16);
             this.equipid3.TabIndex = 49;
             this.equipid3.Text = "ID:";
             this.equipid3.Visible = false;
@@ -589,7 +599,7 @@
             this.equipname3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipname3.Location = new System.Drawing.Point(6, 308);
             this.equipname3.Name = "equipname3";
-            this.equipname3.Size = new System.Drawing.Size(126, 16);
+            this.equipname3.Size = new System.Drawing.Size(130, 16);
             this.equipname3.TabIndex = 46;
             this.equipname3.Text = "Equipment Used:";
             this.equipname3.Visible = false;
@@ -629,7 +639,7 @@
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.Location = new System.Drawing.Point(543, 368);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(88, 16);
+            this.label38.Size = new System.Drawing.Size(91, 16);
             this.label38.TabIndex = 37;
             this.label38.Text = "Total Profit:";
             // 
@@ -659,7 +669,7 @@
             this.equipid1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipid1.Location = new System.Drawing.Point(341, 250);
             this.equipid1.Name = "equipid1";
-            this.equipid1.Size = new System.Drawing.Size(27, 16);
+            this.equipid1.Size = new System.Drawing.Size(30, 16);
             this.equipid1.TabIndex = 34;
             this.equipid1.Text = "ID:";
             this.equipid1.Visible = false;
@@ -698,7 +708,7 @@
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(437, 308);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(194, 16);
+            this.label24.Size = new System.Drawing.Size(200, 16);
             this.label24.TabIndex = 28;
             this.label24.Text = "Equipment Worktime Profit:";
             // 
@@ -727,7 +737,7 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(5, 100);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(51, 16);
+            this.label16.Size = new System.Drawing.Size(53, 16);
             this.label16.TabIndex = 25;
             this.label16.Text = "Order:";
             // 
@@ -748,7 +758,7 @@
             this.equipname1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.equipname1.Location = new System.Drawing.Point(6, 250);
             this.equipname1.Name = "equipname1";
-            this.equipname1.Size = new System.Drawing.Size(126, 16);
+            this.equipname1.Size = new System.Drawing.Size(130, 16);
             this.equipname1.TabIndex = 23;
             this.equipname1.Text = "Equipment Used:";
             this.equipname1.Visible = false;
@@ -778,7 +788,7 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(6, 70);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(77, 16);
+            this.label15.Size = new System.Drawing.Size(80, 16);
             this.label15.TabIndex = 20;
             this.label15.Text = "Company:";
             // 
@@ -798,7 +808,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(464, 280);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 16);
+            this.label7.Size = new System.Drawing.Size(172, 16);
             this.label7.TabIndex = 18;
             this.label7.Text = "Total Employee Hours:";
             // 
@@ -827,7 +837,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(440, 250);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(191, 16);
+            this.label4.Size = new System.Drawing.Size(197, 16);
             this.label4.TabIndex = 15;
             this.label4.Text = "Employee Worktime Profit:";
             // 
@@ -892,7 +902,7 @@
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(323, 279);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(148, 16);
+            this.label30.Size = new System.Drawing.Size(155, 16);
             this.label30.TabIndex = 21;
             this.label30.Text = "Corrected End Date:";
             // 
@@ -910,7 +920,7 @@
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(367, 241);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(104, 16);
+            this.label32.Size = new System.Drawing.Size(110, 16);
             this.label32.TabIndex = 19;
             this.label32.Text = "Old End Date:";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -921,7 +931,7 @@
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.Location = new System.Drawing.Point(218, 122);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(85, 16);
+            this.label35.Size = new System.Drawing.Size(87, 16);
             this.label35.TabIndex = 14;
             this.label35.Text = "Equipment:";
             // 
@@ -939,7 +949,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(301, 30);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(124, 16);
+            this.label13.Size = new System.Drawing.Size(129, 16);
             this.label13.TabIndex = 11;
             this.label13.Text = "Add Order Hours";
             // 
@@ -957,7 +967,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(89, 279);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(125, 16);
+            this.label14.Size = new System.Drawing.Size(130, 16);
             this.label14.TabIndex = 9;
             this.label14.Text = "Corrected Hours:";
             // 
@@ -975,7 +985,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(129, 241);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 16);
+            this.label12.Size = new System.Drawing.Size(85, 16);
             this.label12.TabIndex = 7;
             this.label12.Text = "Old Hours:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -996,7 +1006,7 @@
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(195, 152);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(108, 16);
+            this.label11.Size = new System.Drawing.Size(113, 16);
             this.label11.TabIndex = 5;
             this.label11.Text = "Hours To Add:";
             // 
@@ -1013,7 +1023,7 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(252, 64);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 16);
+            this.label10.Size = new System.Drawing.Size(53, 16);
             this.label10.TabIndex = 3;
             this.label10.Text = "Order:";
             // 
@@ -1023,7 +1033,7 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(221, 92);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 16);
+            this.label9.Size = new System.Drawing.Size(84, 16);
             this.label9.TabIndex = 2;
             this.label9.Text = "Employee:";
             // 
@@ -1047,16 +1057,6 @@
             this.get_emps.TabIndex = 0;
             this.get_emps.SelectedIndexChanged += new System.EventHandler(this.get_emps_SelectedIndexChanged);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(119, 174);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(185, 23);
-            this.button3.TabIndex = 82;
-            this.button3.Text = "Generate Report";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.DarkGray;
@@ -1068,16 +1068,6 @@
             this.tabPage3.Size = new System.Drawing.Size(725, 418);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "View";
-            // 
-            // showorders
-            // 
-            this.showorders.Location = new System.Drawing.Point(286, 31);
-            this.showorders.Name = "showorders";
-            this.showorders.Size = new System.Drawing.Size(138, 23);
-            this.showorders.TabIndex = 6;
-            this.showorders.Text = "Show Orders";
-            this.showorders.UseVisualStyleBackColor = true;
-            this.showorders.Click += new System.EventHandler(this.showorders_Click);
             // 
             // dataGridView1
             // 
@@ -1092,6 +1082,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(713, 352);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.Visible = false;
+            // 
+            // showorders
+            // 
+            this.showorders.Location = new System.Drawing.Point(286, 31);
+            this.showorders.Name = "showorders";
+            this.showorders.Size = new System.Drawing.Size(138, 23);
+            this.showorders.TabIndex = 6;
+            this.showorders.Text = "Show Orders";
+            this.showorders.UseVisualStyleBackColor = true;
+            this.showorders.Click += new System.EventHandler(this.showorders_Click);
             // 
             // Form1
             // 
